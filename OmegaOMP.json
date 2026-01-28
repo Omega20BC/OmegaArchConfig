@@ -1,0 +1,153 @@
+{
+   "console_title_template": "{{ .Shell }} in {{ .Folder }}",
+   "version": 4,
+   "final_space": true,
+   "palette": {
+      "black": "#222222",
+      "grey": "#C0C0C0",
+      "white": "#FFFFFF",
+      "blue": "#0080FF",
+      "green": "#00C000",
+      "red": "#FF0000"
+   },
+   "blocks": [
+      {
+         "type": "prompt",
+         "alignment": "left",
+         "newline": true,
+         "segments": [
+            {
+               "type": "text",
+               "style": "plain",
+               "background": "transparent",
+               "foreground": "p:white",
+               "foreground_templates": [
+                  "{{ if eq .Code 0 }}p:white{{ else }}p:red{{ end }}"
+               ],
+               "template": "╭"
+            },
+            {
+               "type": "os",
+               "style": "diamond",
+               "leading_diamond": "",
+               "trailing_diamond": "",
+               "background": "p:black",
+               "foreground": "p:blue",
+               "template": "{{ .Icon }} ",
+               "properties": {
+                  "arch": "󰣇"
+               }
+            },
+            {
+               "type": "session",
+               "style": "diamond",
+               "leading_diamond": "",
+               "trailing_diamond": "",
+               "background": "p:black",
+               "foreground": "p:blue",
+               "template": "{{ if .Root }} 󰢏 <b>{{ .UserName }}</b>@<b>{{ .HostName }}</b>{{ else }}  <b>{{ .UserName }}</b>@<b>{{ .HostName }}</b>{{ end }}"
+            },
+            {
+               "type": "text",
+               "style": "powerline",
+               "powerline_symbol": "",
+               "background": "p:black",
+               "foreground": "p:blue",
+               "template": ""
+            },
+            {
+               "type": "path",
+               "style": "powerline",
+               "powerline_symbol": "",
+               "background": "p:black",
+               "foreground": "p:grey",
+               "template": "{{ .Path }} ",
+               "properties": {
+                  "style": "agnoster",
+                  "home_icon": "󰜥",
+                  "folder_icon": " ",
+                  "folder_separator_icon": " <p:blue></> ",
+                  "mapped_locations": {
+                     "~/Desktop": "󰜥 <p:blue></>  ",
+                     "~/Documents": "󰜥 <p:blue></> 󰧮 ",
+                     "~/Development": "󰜥 <p:blue></> 󰐋 ",
+                     "~/Downloads": "󰜥 <p:blue></>  ",
+                     "~/Games": "󰜥 <p:blue></> 󰺷 ",
+                     "~/Music": "󰜥 <p:blue></>  ",
+                     "~/Pictures": "󰜥 <p:blue></>  ",
+                     "~/Servers": "󰜥 <p:blue></>  ",
+                     "~/Videos": "󰜥 <p:blue></>  ",
+                     "~/winboat": "󰜥 <p:blue></> 󰖳 ",
+                     "~/.config": "󰜥 <p:blue></>  "
+                  }
+               }
+            }
+         ]
+      },
+      {
+         "type": "prompt",
+         "alignment": "right",
+         "segments": [
+            {
+               "type": "executiontime",
+               "style": "diamond",
+               "leading_diamond": " ",
+               "trailing_diamond": "",
+               "background": "p:black",
+               "foreground": "p:grey",
+               "foreground_templates": [
+                  "{{ if eq .Code 0 }}p:green{{ else }}p:red{{ end }}"
+               ],
+               "template": " :{{ .FormattedMs }} ",
+               "properties": {
+                  "threshold": 0,
+                  "style": "round",
+                  "always_enable": true
+               }
+            },
+            {
+               "type": "status",
+               "style": "diamond",
+               "leading_diamond": "",
+               "trailing_diamond": "",
+               "background": "p:green",
+               "foreground": "p:white",
+               "background_templates": [
+                  "{{ if .Error }}p:red{{ end }}"
+               ],
+               "properties": {
+                  "status_template": "{{ if eq .Code 0 }}{{ else }}{{ end }}",
+                  "always_enabled": true
+               }
+            }
+         ]
+      },
+      {
+         "type": "prompt",
+         "alignment": "left",
+         "newline": true,
+         "segments": [
+            {
+               "type": "text",
+               "style": "plain",
+               "background": "transparent",
+               "foreground": "p:white",
+               "foreground_templates": [
+                  "{{ if gt .Code 0 }}p:red{{ end }}"
+               ],
+               "template": "{{ if .Root }}└─┤#{{ else }}╰─┤${{ end }}"
+            }
+         ]
+      }
+   ],
+   "transient_prompt": {
+      "background": "transparent",
+      "foreground": "p:white",
+      "template": "{{ if .Root }} │# {{ else }} │$ {{ end }}"
+   },
+   "secondary_prompt": {
+      "background": "transparent",
+      "foreground": "p:white",
+      "template": "  │🢖 "
+   }
+}
